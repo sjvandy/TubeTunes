@@ -12,7 +12,7 @@ def Download_Youtube_Audio(link):
     yt = YouTube(link)
     print("Downloading...")
     audio = yt.streams.filter(only_audio=True).first()
-    audio.download(filename=f"{yt.title}.m4a", output_path=downloads_folder)
+    audio.download(filename=f"{yt.title}.mp3", output_path=downloads_folder)
 
 #Program Welcome Prompt
 print("TubeTunes")
