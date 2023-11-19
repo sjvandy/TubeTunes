@@ -32,4 +32,4 @@ while isRunning:
             if isinstance(e, exceptions.RegexMatchError):
                 print('Error: Link is not a valid Youtube link. Try Again.')
             else:
-                print(f"Error: {type(e)}")            
+                print(f"An Error Occured: {type(e)}")            
