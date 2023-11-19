@@ -20,13 +20,13 @@ print("Youtube to mp3 converter")
 print('To close program, hit option C or type "quit"')
 
 while isRunning:
-    responce = input('Enter Youtube Link: ')
-    if responce == 'quit':
+    user_input = input('Enter Youtube Link: ')
+    if user_input == 'quit':
         isRunning = False
         break
     else:
         try:
-            Download_Youtube_Audio(responce)    
+            Download_Youtube_Audio(user_input)    
             print("Youtube Audio Downloaded Successfully")
         except Exception as e:
             if isinstance(e, exceptions.RegexMatchError):
