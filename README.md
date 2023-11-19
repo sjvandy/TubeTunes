@@ -18,4 +18,6 @@ I got tired of using those websites with tons of ads and misleading download lin
 4. Enter Link to Youtube video
 5. Mp3 will download to the user downloads folder
 
-
+###### Note
+Audio Files downloaded from youtube cannot be added to Apple Music or other audio platforms. 
+Best use is for Discord soundboard
