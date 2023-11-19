@@ -16,6 +16,6 @@ I got tired of using those websites with tons of ads and misleading download lin
 2. Type `pip install -r requirements.txt` into the terminal
 3. Type `Python3 TubeTunes.py`
 4. Enter Link to Youtube video
-5. Video will download to the user downloads folder
+5. Mp3 will download to the user downloads folder
 
 
