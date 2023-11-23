@@ -2,18 +2,26 @@ import os
 from pytube import exceptions
 from pytube import YouTube
 import tkinter as tk
+from moviepy.editor import *
 
 #Declaring User's Download Folder
 downloads_folder = os.path.join(os.path.expanduser('~'), 'Downloads')
 
-def destroy_label(label):
-    label.destroy()
-
 # Download Youtube Audio
 def download_youtube_audio(link):
     yt = YouTube(link)    
-    audio = yt.streams.filter(only_audio=True).first()
-    audio.download(filename=f"{yt.title}.mp3", output_path=downloads_folder)    
+    video = yt.streams.filter(progressive=True, file_extension='mp4').first()
+    video.download(filename="movie.mp4")
+    convert_to_mp3(yt.title)
+
+def convert_to_mp3(title):
+    try:
+        video = VideoFileClip('movie.mp4')
+        video.audio.write_audiofile(f"{downloads_folder}/{title}.mp3")
+    except Exception as e:
+        print(e)
+    os.remove(f"{os.curdir}/movie.mp4")
+
 
 # Define Button Click
 def button_pushed():   
