@@ -1,0 +1,3 @@
+([('TubeTunes',
+   '/Users/svandegrift/Documents/Developer/TubeTunes/dist/TubeTunes',
+   'EXECUTABLE')],)
