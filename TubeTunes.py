@@ -14,7 +14,7 @@ is_running = True
 def download_youtube_audio(link):
     try:
         yt = YouTube(link)
-        video = yt.streams.filter(progressive=True, file_extension='mp4').first()
+        video = yt.streams.filter(progressive=True, file_extension='mp4').get_highest_resolution()
         video.download(filename="movie.mp4")
         get_album_art(yt.thumbnail_url)
         convert_to_mp3(yt.title)        
@@ -22,10 +22,9 @@ def download_youtube_audio(link):
         pass
     try:
         p = Playlist(link)
-        got_thumbnail = False
-        get_album_art(p)
+        got_thumbnail = False        
         for video in p.videos:
-            current_video = video.streams.filter(progressive=True, file_extension='mp4').first()
+            current_video = video.streams.filter(progressive=True, file_extension='mp4').get_highest_resolution()
             print('found video stream successfully')
             current_video.download(filename="movie.mp4")
             print('downloaded video')
@@ -40,7 +39,8 @@ def download_youtube_audio(link):
         pass
     
 # Convert MP4 video to MP3 format
-def convert_to_mp3(title, playlist_title=None):
+def convert_to_mp3(title: str, playlist_title=None):
+    title = title.replace('/', ':')
     # If link is a single Youtube video
     if playlist_title is None:
         print('no playlist name detected')
