@@ -1,35 +1,36 @@
 import os
-from pytube import exceptions
-from pytube import YouTube
-from urllib.request import urlretrieve
+from pytubefix import exceptions
+from pytubefix import YouTube
+from pytubefix.cli import on_progress
 
 #Declaring User's Download Folder
 downloads_folder = os.path.join(os.path.expanduser('~'), 'Downloads')
 
 # Download Youtube Audio
-def download_youtube_audio(link):
-    yt = YouTube(link)
+def download_youtube_audio(url):
+    yt = YouTube(url, on_progress_callback = on_progress)
 
     # extract only audio 
-    video = yt.streams.filter(only_audio=True).first() 
+    stream = yt.streams.filter(only_audio=True).first() 
 
     # download the file 
-    out_file = video.download(output_path=downloads_folder) 
+    out_file = stream.download(output_path=downloads_folder, mp3=True)
 
     # save the file 
-    base, ext = os.path.splitext(out_file) 
+    base, _ = os.path.splitext(out_file) 
     new_file = base + '.mp3'
     os.rename(out_file, new_file) 
 
     # Download Youtube Tumbnail
     filename_path = f"{downloads_folder}/{yt.title}.png"
-    thumbnail = urlretrieve(yt.thumbnail_url, filename_path)
     
-# Define Button Click
+    
+os.system('clear')
 print('Youtube to MP3 Converter')
+print('Enter "quit" to exit')
 while True:   
     user_input = input("Enter the Youtube Link: ")
-    if user_input == 'quit()': break
+    if user_input == 'quit': break
     else:
         try:
             print('Downloading...')
